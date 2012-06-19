@@ -1,6 +1,6 @@
 source :rubygems
 
 group :test do
-  gem 'cucumber'
+  gem 'cucumber', require: false
   gem 'rspec'
 end
