@@ -1,5 +1,7 @@
 class Feed
-  attr_accessor :username
+  def initialize(opts = {})
+    
+  end
 
   def to_xml
     ''
