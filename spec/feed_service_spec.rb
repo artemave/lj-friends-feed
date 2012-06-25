@@ -18,5 +18,24 @@ describe FeedService do
 
       feed_service.to_xml(feed_model)
     end
+
+    it 'sets channel link' do
+      link = 'http://artemave.livejournal.com/friends/'
+      feed_model.stub(:link).and_return(link)
+
+      feed_generator.should_receive(:link=).with(link).ordered
+      feed_generator.should_receive(:generate).ordered
+
+      feed_service.to_xml(feed_model)
+    end
+
+    it 'sets channel description' do
+      feed_model.stub(:description).and_return('description')
+
+      feed_generator.should_receive(:description=).with('description').ordered
+      feed_generator.should_receive(:generate).ordered
+
+      feed_service.to_xml(feed_model)
+    end
   end
 end
