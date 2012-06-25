@@ -13,7 +13,7 @@ describe FeedService do
   describe 'takes model data and passes it into feed generator before generating xml' do
     it 'sets channel title' do
       feed_model.stub(:title).and_return('artemave')
-      feed_generator.should_receive(:channel_title=).with('artemave').ordered
+      feed_generator.should_receive(:title=).with('artemave').ordered
       feed_generator.should_receive(:generate).ordered
 
       feed_service.to_xml(feed_model)
