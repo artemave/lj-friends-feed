@@ -1,14 +1,14 @@
 class Feed
   attr_reader :username
 
-  def initialize(opts = {}, feed_service = FeedService.new, feed_entries = FeedEntries.new)
+  def initialize(opts = {}, feed_service = FeedService.new)
     @feed_service = feed_service
-    @feed_entries = feed_entries
+    @entries      = opts[:entries] || FeedEntries.new
     @username     = opts[:username]
   end
 
   def entries
-    @feed_entries
+    @entries
   end
 
   def to_xml
