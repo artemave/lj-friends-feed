@@ -1,9 +1,14 @@
-class FeedEntries
+class FeedEntries < Array
   def initialize(entries = [])
-    @entries = entries
+    validate(entries)
+    self.concat entries
   end
 
-  def size
-    @entries.size
+  private
+
+  def validate(entries)
+    unless entries.all? {|e| e.is_a? Entry}
+      raise 'This collection is for Entry instances only'
+    end
   end
 end
