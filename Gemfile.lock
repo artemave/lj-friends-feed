@@ -1,6 +1,9 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    activesupport (3.2.6)
+      i18n (~> 0.6)
+      multi_json (~> 1.0)
     awesome_print (1.0.2)
     builder (3.0.0)
     cucumber (1.2.1)
@@ -9,9 +12,15 @@ GEM
       gherkin (~> 2.11.0)
       json (>= 1.4.6)
     diff-lcs (1.1.3)
+    factory_girl (3.5.0)
+      activesupport (>= 3.0.0)
+    faker (1.0.1)
+      i18n (~> 0.4)
     gherkin (2.11.0)
       json (>= 1.4.6)
+    i18n (0.6.0)
     json (1.7.3)
+    multi_json (1.3.6)
     rspec (2.10.0)
       rspec-core (~> 2.10.0)
       rspec-expectations (~> 2.10.0)
@@ -27,4 +36,6 @@ PLATFORMS
 DEPENDENCIES
   awesome_print
   cucumber
+  factory_girl
+  faker
   rspec
