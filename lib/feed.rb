@@ -1,8 +1,8 @@
 class Feed
   attr_reader :username
 
-  def initialize(opts = {}, feed_service = FeedService.new)
-    @feed_service = feed_service
+  def initialize(opts = {}, feed_generator = FeedGenerator.new)
+    @feed_generator = feed_generator
     @entries      = opts[:entries] || FeedEntries.new
     @username     = opts[:username]
   end
@@ -12,7 +12,7 @@ class Feed
   end
 
   def to_xml
-    @feed_service.to_xml(self)
+    @feed_generator.to_xml(self)
   end
 
   def title

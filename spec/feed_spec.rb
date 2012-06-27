@@ -1,12 +1,12 @@
 require_relative '../lib/feed'
 
 describe Feed, 'model of RSS feed' do
-  let(:feed_service) { mock(:feed_service) }
+  let(:feed_generator) { mock(:feed_generator) }
   let(:entries) { mock(:entries) }
-  let(:feed) { Feed.new({ username: 'artemave', entries: entries }, feed_service)}
+  let(:feed) { Feed.new({ username: 'artemave', entries: entries }, feed_generator)}
 
   it 'generates RSS feed' do
-    feed_service.should_receive(:to_xml).with(feed)
+    feed_generator.should_receive(:to_xml).with(feed)
     feed.to_xml
   end
 
