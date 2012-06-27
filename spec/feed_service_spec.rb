@@ -40,7 +40,7 @@ describe FeedService do
     end
 
     it 'sets feed items' do
-      feed_model.stub(:entries).and_return([e1 = double(:entry1), e2 = double(:entry2)])
+      feed_model.stub(:entries).and_return([e1 = double, e2 = double])
       entry_converter.stub(:entry_to_rss_item) do |entry|
         entry
       end
