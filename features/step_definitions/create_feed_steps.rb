@@ -7,5 +7,6 @@ When /^I create a feed for that user$/ do
 end
 
 Then /^I should see that feed is created$/ do
+  page.should_not have_errors
   page.should have_content('feed created')
 end

@@ -4,10 +4,14 @@ require 'rss'
 require 'factory_girl'
 require 'capybara/cucumber'
 
-require_relative '../../spec/matchers/feed_matchers'
 require_relative 'ui_helpers'
 
-Dir[File.expand_path '../../../lib/*.rb', __FILE__].each &method(:require)
+[
+  File.expand_path('../../../spec/matchers/*.rb', __FILE__),
+  File.expand_path('../../../lib/*.rb', __FILE__)
+].each do |glob|
+  Dir[glob].each &method(:require)
+end
 
 World(FactoryGirl::Syntax::Methods, UiHelpers)
 
