@@ -4,7 +4,7 @@ Given /^there is a feed for my lj user$/ do
 end
 
 When /^I subscribe to that feed$/ do
-  @actual_feed = RSS::Parser.parse(@internal_feed.to_xml)
+  @actual_feed = RSS::Parser.parse(FeedGenerator.new.to_xml(@internal_feed))
 end
 
 Then /^I should see my friends posts$/ do

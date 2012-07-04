@@ -1,14 +1,8 @@
 require_relative '../lib/feed'
 
 describe Feed, 'model of RSS feed' do
-  let(:feed_generator) { mock(:feed_generator) }
   let(:entries) { mock(:entries) }
-  let(:feed) { Feed.new({ username: 'artemave', entries: entries }, feed_generator)}
-
-  it 'generates RSS feed' do
-    feed_generator.should_receive(:to_xml).with(feed)
-    feed.to_xml
-  end
+  let(:feed) { Feed.new({ username: 'artemave', entries: entries })}
 
   it 'makes feed title out of lj username' do
     feed.title.should == 'artemave friends posts'
