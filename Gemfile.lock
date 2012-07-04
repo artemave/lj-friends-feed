@@ -44,6 +44,8 @@ GEM
       rack
     rack-test (0.6.1)
       rack (>= 1.0)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rspec (2.10.0)
       rspec-core (~> 2.10.0)
       rspec-expectations (~> 2.10.0)
@@ -86,6 +88,7 @@ DEPENDENCIES
   factory_girl
   faker
   haml
+  rest-client
   rspec
   sinatra
   sinatra-reloader
