@@ -1,3 +1,5 @@
+require_relative 'entry_fetcher'
+
 class FeedPopulator
   def initialize entry_fetcher = EntryFetcher.new
     @entry_fetcher = entry_fetcher

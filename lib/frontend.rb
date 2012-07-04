@@ -2,6 +2,7 @@ require 'sinatra'
 require 'sinatra/reloader' if development?
 require 'haml'
 require_relative 'feed'
+require_relative 'feed_populator'
 
 set :root, File.expand_path('../..', __FILE__)
 

@@ -1,4 +1,5 @@
 require 'rss'
+require_relative 'item_populator'
 
 class FeedGenerator
   def initialize(item_populator = ItemPopulator.new)

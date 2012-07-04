@@ -1,3 +1,6 @@
+require_relative 'lj_driver'
+require_relative 'rss_items_extractor'
+
 class UserEntriesFetcher
   def initialize lj_driver = LjDriver.new, rss_items_extractor = RssItemsExtractor.new
     @lj_driver           = lj_driver

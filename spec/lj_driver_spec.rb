@@ -15,4 +15,9 @@ describe LjDriver do
     xml = lj_driver.user_rss 'artemave'
     xml.should == 'xml'
   end
+
+  it 'changes username subdomain according to lj idiotic rules' do
+    http_client.should_receive(:get).with('http://artem-ave.livejournal.com/data/rss')
+    lj_driver.user_rss 'artem_ave'
+  end
 end

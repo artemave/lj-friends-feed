@@ -16,4 +16,6 @@ describe EntryFetcher do
     entries = entry_fetcher.fetch_for_user('artemave')
     entries.should =~ [entry1, entry2, entry3]
   end
+
+  xit 'sorts entries by date'
 end

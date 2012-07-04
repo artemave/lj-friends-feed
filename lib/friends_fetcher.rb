@@ -1,3 +1,5 @@
+require_relative 'lj_driver'
+
 class FriendsFetcher
   def initialize lj_driver = LjDriver.new
     @lj_driver = lj_driver

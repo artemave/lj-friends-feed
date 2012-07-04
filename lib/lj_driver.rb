@@ -1,3 +1,5 @@
+require 'rest-client'
+
 class LjDriver
   def initialize http_client = RestClient
     @http_client = http_client
@@ -8,6 +10,12 @@ class LjDriver
   end
 
   def user_rss user
-    @http_client.get "http://#{user}.livejournal.com/data/rss"
+    @http_client.get "http://#{comply_with_lj_idiocy user}.livejournal.com/data/rss"
   end
+
+  private
+
+    def comply_with_lj_idiocy user
+      user.gsub('_', '-')
+    end
 end

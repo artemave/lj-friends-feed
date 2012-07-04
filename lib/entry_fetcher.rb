@@ -1,3 +1,6 @@
+require_relative 'friends_fetcher'
+require_relative 'user_entries_fetcher'
+
 class EntryFetcher
   def initialize friends_fetcher = FriendsFetcher.new, user_entries_fetcher = UserEntriesFetcher.new
     @friends_fetcher      = friends_fetcher

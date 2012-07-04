@@ -1,4 +1,5 @@
 require 'rss'
+require_relative 'entry'
 
 class RssItemsExtractor
   def extract_items xml
