@@ -1,2 +1,2 @@
-class Entry < Struct.new(:author, :title, :pub_date, :content, :link)
+class Entry < KeyStruct[:author, :title, :pub_date, :content, :link]
 end

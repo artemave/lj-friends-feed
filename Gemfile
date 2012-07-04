@@ -4,6 +4,7 @@ gem 'sinatra'
 gem 'sinatra-reloader'
 gem 'haml'
 gem 'rest-client'
+gem 'key_struct'
 
 group :test do
   gem 'cucumber', require: false
