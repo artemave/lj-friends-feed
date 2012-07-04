@@ -1,6 +1,7 @@
 require 'sinatra'
-require "sinatra/reloader" if development?
+require 'sinatra/reloader' if development?
 require 'haml'
+require_relative 'feed'
 
 set :root, File.expand_path('../..', __FILE__)
 
@@ -12,6 +13,7 @@ post '/feeds' do
   # TODO empty username
   # TODO non existent lj user
   # TODO feed alreay exists
+
   feed = Feed.new username: params['username']
-  feed.populate
+  FeedPopulator.new.populate feed
 end

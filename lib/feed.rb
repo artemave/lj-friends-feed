@@ -1,3 +1,6 @@
+require_relative 'feed_generator'
+require_relative 'feed_entries'
+
 class Feed
   attr_reader :username
 
