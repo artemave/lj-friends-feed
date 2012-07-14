@@ -2,8 +2,8 @@ class Feed
   attr_reader :username
 
   def initialize(opts = {})
-    @entries      = opts[:entries] || []
-    @username     = opts[:username]
+    @entries  = opts[:entries] || []
+    @username = opts[:username]
   end
 
   def entries
