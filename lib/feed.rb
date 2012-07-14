@@ -1,11 +1,8 @@
-require_relative 'feed_generator'
-require_relative 'feed_entries'
-
 class Feed
   attr_reader :username
 
   def initialize(opts = {})
-    @entries      = opts[:entries] || FeedEntries.new
+    @entries      = opts[:entries] || []
     @username     = opts[:username]
   end
 
