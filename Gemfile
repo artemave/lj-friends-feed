@@ -5,6 +5,7 @@ gem 'sinatra-reloader'
 gem 'haml'
 gem 'rest-client'
 gem 'key_struct'
+gem 'mongoid'
 
 group :test do
   gem 'cucumber', require: false
