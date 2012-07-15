@@ -1,4 +1,6 @@
 require_relative 'spec_helper'
+require_relative '../lib/feed_populator'
+require_relative '../lib/feed'
 
 describe FeedPopulator do
   let(:entry1) { build :entry }

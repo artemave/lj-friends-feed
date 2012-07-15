@@ -1,4 +1,5 @@
 require_relative 'spec_helper'
+require_relative '../lib/entry_fetcher'
 
 describe EntryFetcher do
   let(:entry_fetcher) { EntryFetcher.new(friends_fetcher, user_entries_fetcher) }

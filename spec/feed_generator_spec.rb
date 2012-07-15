@@ -1,5 +1,7 @@
 require 'rss'
 require_relative 'spec_helper'
+require_relative '../lib/feed_generator'
+require_relative '../lib/entry'
 
 describe FeedGenerator do
   let(:item_populator) { double(:item_populator) }
