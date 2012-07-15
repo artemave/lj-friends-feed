@@ -6,7 +6,7 @@ require_relative '../lib/entry'
 describe FeedGenerator do
   let(:item_populator) { double :item_populator }
   let(:link_generator) { double :link_generator, generate_feed_link: 'link' }
-  let(:feed_gen) { FeedGenerator.new item_populator, link_generator }
+  let(:feed_gen) { FeedGenerator.new link_generator, item_populator }
   let(:model) {
     stub :model,
       title: 'artemave friends posts',

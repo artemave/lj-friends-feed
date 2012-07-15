@@ -1,6 +1,8 @@
 !!!
 - unless @feed
-  %p "No such feed"
+  %div
+    No such feed. Go create one
+    %a{href: '/'} here
 - else
   %p Here is the feed link:
-  %a{href: @feed.link}
+  %a{href: @feed_url}= @feed_url

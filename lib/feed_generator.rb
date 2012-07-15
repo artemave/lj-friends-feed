@@ -1,8 +1,9 @@
 require 'rss'
 require_relative 'item_populator'
+require_relative 'link_generator'
 
 class FeedGenerator
-  def initialize(item_populator = ItemPopulator.new, link_generator = LinkGenerator.new)
+  def initialize(link_generator, item_populator = ItemPopulator.new)
     @item_populator = item_populator
     @link_generator = link_generator
   end

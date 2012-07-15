@@ -1,4 +1,6 @@
 require_relative 'spec_helper'
+require 'rss'
+require_relative '../lib/rss_items_extractor'
 
 describe RssItemsExtractor do
   let (:entry1) { build :entry }

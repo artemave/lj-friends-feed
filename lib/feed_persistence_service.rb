@@ -1,4 +1,4 @@
-require 'feed'
+require_relative 'feed'
 
 class FeedPersistenceService
   class MongoFeed

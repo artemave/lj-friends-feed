@@ -1,7 +1,9 @@
 source :rubygems
 
+gem 'thin'
 gem 'sinatra'
 gem 'sinatra-reloader'
+gem 'sinatra-url-for', git: 'git://github.com/emk/sinatra-url-for.git'
 gem 'haml'
 gem 'rest-client'
 gem 'key_struct'
