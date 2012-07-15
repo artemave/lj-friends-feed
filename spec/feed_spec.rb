@@ -8,10 +8,6 @@ describe Feed, 'model of RSS feed' do
     feed.title.should == 'artemave friends posts'
   end
 
-  it 'makes feed link out of lj username' do
-    feed.link.should == "http://artemave.livejournal.com/friends/"
-  end
-
   it 'makes feed description out of lj username' do
     feed.description.should == 'artemave friends posts'
   end

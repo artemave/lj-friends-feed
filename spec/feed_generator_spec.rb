@@ -4,12 +4,12 @@ require_relative '../lib/feed_generator'
 require_relative '../lib/entry'
 
 describe FeedGenerator do
-  let(:item_populator) { double(:item_populator) }
-  let(:feed_gen) { FeedGenerator.new item_populator }
+  let(:item_populator) { double :item_populator }
+  let(:link_generator) { double :link_generator, generate_feed_link: 'link' }
+  let(:feed_gen) { FeedGenerator.new item_populator, link_generator }
   let(:model) {
     stub :model,
       title: 'artemave friends posts',
-      link: 'link',
       description: 'description',
       entries: []
   }
@@ -30,7 +30,7 @@ describe FeedGenerator do
   it 'generates channel link' do
     link = 'http://artemave.livejournal.com/friends/'
 
-    model.stub(:link).and_return(link)
+    link_generator.stub(:generate_feed_link).with(model).and_return(link)
     feed = RSS::Parser.parse(feed_gen.to_xml(model))
 
     feed.channel.link.should == link

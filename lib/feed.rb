@@ -15,8 +15,4 @@ class Feed
   end
 
   alias_method :description, :title
-
-  def link
-    "http://#@username.livejournal.com/friends/"
-  end
 end
