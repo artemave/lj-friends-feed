@@ -4,5 +4,7 @@
     No such feed. Go create one
     %a{href: '/'} here
 - else
+  - if flash[:notice]
+    %div{style: 'color: green'}= flash[:notice]
   %p Here is the feed link:
   %a{href: @feed_url}= @feed_url

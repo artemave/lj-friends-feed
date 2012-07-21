@@ -69,6 +69,9 @@ GEM
       pry (>= 0.9.9.6)
       yard (~> 0.8.1)
     rack (1.4.1)
+    rack-flash3 (1.0.1)
+      rack
+      rack
     rack-protection (1.2.0)
       rack
     rack-test (0.6.1)
@@ -129,6 +132,7 @@ DEPENDENCIES
   mongoid
   pry
   pry-doc
+  rack-flash3
   rest-client
   rspec
   sinatra

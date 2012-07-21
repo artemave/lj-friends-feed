@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'sinatra/reloader' if ENV['RACK_ENV'] != 'production'
 require 'haml'
 require 'sinatra/url_for'
+require 'rack-flash'
 require 'mongoid'
 require_relative 'feed_persistence_service'
 require_relative 'feed_generator'
@@ -11,6 +12,9 @@ Mongoid.load!(File.expand_path '../../config/mongoid.yml', __FILE__)
 
 class Frontend < Sinatra::Base
   set :root, File.expand_path('../..', __FILE__)
+
+  enable :sessions
+  use Rack::Flash, :sweep => true
 
   helpers Sinatra::UrlForHelper
 
@@ -49,14 +53,8 @@ class Frontend < Sinatra::Base
   end
 
   post '/feeds' do
-    # TODO empty username
-    # TODO non existent lj user
-    # TODO feed alreay exists
-
-    # feed = Feed.new username: params['username']
-    # FeedPopulator.new.populate feed
-
     feed = feed_persistence_service.find_or_create(params['username'])
+    flash[:notice] = 'Feed created!'
     redirect "/feeds/#{feed.username}"
   end
 end
