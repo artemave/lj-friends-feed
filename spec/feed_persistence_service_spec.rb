@@ -20,18 +20,30 @@ describe FeedPersistenceService do
     feed.should == nil
   end
 
-  context '#find_or_create' do
-    it 'finds if exists' do
+  describe '#find_or_create' do
+    it 'finds feed if it exists' do
       feed_persistence_service.create(expected_feed)
       feed = feed_persistence_service.find_or_create(expected_feed.username)
 
       feed.should equal_to(expected_feed)
     end
 
-    it 'creates if does not exist' do
+    it 'creates feed if one does not exist' do
       feed = feed_persistence_service.find_or_create(expected_feed.username)
 
       feed.should equal_to(expected_feed)
+    end
+  end
+
+  context 'entries' do
+    it 'persists entries' do
+      entry1, entry2 = build(:entry), build(:entry)
+      expected_feed.entries << entry1 << entry2
+      feed_persistence_service.create expected_feed
+
+      feed = feed_persistence_service.find(expected_feed.username)
+
+      feed.entries.should == [entry1, entry2]
     end
   end
 end

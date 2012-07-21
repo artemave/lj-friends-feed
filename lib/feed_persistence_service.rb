@@ -1,21 +1,40 @@
 require_relative 'feed'
+require_relative 'entry'
 
 class FeedPersistenceService
   class MongoFeed
     include Mongoid::Document
 
-    field :username, type: String
+    field :username
+    embeds_many :mongo_entries
+
     validates_uniqueness_of :username
+  end
+
+  class MongoEntry
+    include Mongoid::Document
+
+    field :author
+    field :link
+    field :pub_date
+    field :content
+    field :title
   end
   
   def create feed
-    MongoFeed.create username: feed.username
+    mongo_entries = feed.entries.map do |e|
+      MongoEntry.new e.to_hash
+    end
+    MongoFeed.create username: feed.username, mongo_entries: mongo_entries
     feed
   end
 
   def find feed_id
     f = MongoFeed.find_by username: feed_id
-    Feed.new username: f.username
+    entries = f.mongo_entries.map do |me|
+      Entry.new me.as_document.except("_id").symbolize_keys
+    end
+    Feed.new username: f.username, entries: entries
   rescue Mongoid::Errors::DocumentNotFound
     nil
   end
