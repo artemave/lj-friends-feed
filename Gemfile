@@ -17,4 +17,6 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner', '~> 0.8.0'
   gem 'awesome_print'
+  gem 'pry'
+  gem 'pry-doc'
 end
