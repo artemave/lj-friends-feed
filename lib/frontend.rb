@@ -30,8 +30,9 @@ class Frontend < Sinatra::Base
     haml :index
   end
 
-  get '/feeds/:username.xml' do |username|
+  get %r{^/feeds/(.+)\.xml$} do |username|
     if feed = feed_persistence_service.find(username)
+      content_type 'application/rss-xml'
       feed_generator.to_xml(feed)
     else
       halt 404
