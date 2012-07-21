@@ -45,5 +45,19 @@ describe FeedPersistenceService do
 
       feed.entries.should == [entry1, entry2]
     end
+
+    it 'updates entries' do
+      entry1, entry2, entry3 = 3.times.map { build :entry }
+      expected_feed.entries << entry1 << entry2
+      feed_persistence_service.create expected_feed
+
+      expected_feed.entries.pop
+      expected_feed.entries << entry3
+      feed_persistence_service.update expected_feed
+
+      feed = feed_persistence_service.find(expected_feed.username)
+
+      feed.entries.should == [entry1, entry3]
+    end
   end
 end

@@ -29,6 +29,16 @@ class FeedPersistenceService
     feed
   end
 
+  def update feed
+    mongo_entries = feed.entries.map do |e|
+      MongoEntry.new e.to_hash
+    end
+    mf = MongoFeed.find_by username: feed.username
+    mf.mongo_entries = mongo_entries
+    mf.save
+    feed
+  end
+
   def find feed_id
     f = MongoFeed.find_by username: feed_id
     entries = f.mongo_entries.map do |me|
