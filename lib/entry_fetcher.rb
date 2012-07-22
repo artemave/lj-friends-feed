@@ -8,10 +8,14 @@ class EntryFetcher
   end
 
   def fetch_for_user username
-    [].tap do |entries|
-      @friends_fetcher.fetch(username).each do |user|
+    entries = []
+    threads = []
+    @friends_fetcher.fetch(username).each do |user|
+      threads << Thread.new do
         entries.concat @user_entries_fetcher.fetch(user)
       end
     end
+    threads.each(&:join)
+    entries
   end
 end
