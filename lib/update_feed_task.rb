@@ -1,3 +1,6 @@
+require_relative 'feed_persistence_service'
+require_relative 'feed_updater'
+
 class UpdateFeedTask
   def initialize feed_persistence_service = FeedPersistenceService.new, feed_updater = FeedUpdater.new
     @feed_persistence_service = feed_persistence_service

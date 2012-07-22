@@ -2,6 +2,8 @@ require 'mongoid'
 require_relative 'feed'
 require_relative 'entry'
 
+Mongoid.load!(File.expand_path '../../config/mongoid.yml', __FILE__)
+
 class FeedPersistenceService
   class MongoFeed
     include Mongoid::Document

@@ -3,12 +3,9 @@ require 'sinatra/reloader' if ENV['RACK_ENV'] != 'production'
 require 'haml'
 require 'sinatra/url_for'
 require 'rack-flash'
-require 'mongoid'
 require_relative 'feed_persistence_service'
 require_relative 'feed_generator'
 require_relative 'link_generator'
-
-Mongoid.load!(File.expand_path '../../config/mongoid.yml', __FILE__)
 
 class Frontend < Sinatra::Base
   set :root, File.expand_path('../..', __FILE__)

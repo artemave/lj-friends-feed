@@ -1,7 +1,7 @@
 require 'faraday'
 
 class LjDriver
-  def initialize conn
+  def initialize conn = nil
     @conn = conn || Faraday.new do |faraday|
       faraday.response :logger
       faraday.response :raise_error
