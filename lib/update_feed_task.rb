@@ -5,10 +5,12 @@ class UpdateFeedTask
   end
 
   def invoke
-    puts "Start update: #{Time.now}"
     @feed_persistence_service.all.each do |feed|
-      @feed_updater.update feed
+      begin
+        @feed_updater.update feed
+      rescue Exception => e
+        puts "Feed update failed for username: #{feed.username}: #{e.message}"
+      end
     end
-    puts "Update finished: #{Time.now}"
   end
 end

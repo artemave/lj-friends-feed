@@ -1,4 +1,5 @@
 require_relative 'spec_helper'
+require_relative '../lib/friends_fetcher'
 
 describe FriendsFetcher do
   let(:friends_fetcher) { FriendsFetcher.new(lj_driver) }

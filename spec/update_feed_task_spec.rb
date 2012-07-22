@@ -16,4 +16,14 @@ describe UpdateFeedTask do
 
     update_feed_task.invoke
   end
+
+  it 'isolates individual update feed failure' do
+    feed1, feed2 = Feed.new(username: 'alice'), Feed.new(username: 'bob')
+    feed_persistence_service.stub(:all).and_return([feed1, feed2])
+
+    feed_updater.should_receive(:update).with(feed1).and_raise
+    feed_updater.should_receive(:update).with(feed2).and_raise
+
+    update_feed_task.invoke
+  end
 end
