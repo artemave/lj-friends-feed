@@ -1,3 +1,4 @@
+require 'mongoid'
 require_relative 'feed'
 require_relative 'entry'
 
@@ -40,16 +41,27 @@ class FeedPersistenceService
   end
 
   def find feed_id
-    f = MongoFeed.find_by username: feed_id
-    entries = f.mongo_entries.map do |me|
-      Entry.new me.as_document.except("_id").symbolize_keys
-    end
-    Feed.new username: f.username, entries: entries
+    mongo_feed = MongoFeed.find_by username: feed_id
+    Feed.new username: mongo_feed.username, entries: get_entries(mongo_feed)
   rescue Mongoid::Errors::DocumentNotFound
     nil
   end
 
+  def all
+    MongoFeed.all.map do |mongo_feed|
+      Feed.new username: mongo_feed.username, entries: get_entries(mongo_feed)
+    end
+  end
+
   def find_or_create feed_id
     find(feed_id) or create(Feed.new username: feed_id)
+  end
+
+  private 
+
+  def get_entries mongo_feed
+    mongo_feed.mongo_entries.map do |me|
+      Entry.new me.as_document.except("_id").symbolize_keys
+    end
   end
 end

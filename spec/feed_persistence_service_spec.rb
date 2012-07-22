@@ -15,6 +15,16 @@ describe FeedPersistenceService do
     feed.should equal_to(expected_feed)
   end
 
+  it 'finds all' do
+    feed_persistence_service.create(feed1 = Feed.new(username: 'alice'))
+    feed_persistence_service.create(feed2 = Feed.new(username: 'bob'))
+
+    feeds = feed_persistence_service.all
+
+    feeds.first.should equal_to(feed1)
+    feeds.last.should equal_to(feed2)
+  end
+
   it 'returns nil if no feed is found' do
     feed = feed_persistence_service.find('blah')
     feed.should == nil
