@@ -18,5 +18,15 @@ describe EntryFetcher do
     entries.should =~ [entry1, entry2, entry3]
   end
 
-  xit 'sorts entries by date'
+  it 'sorts entries by date (most recent first)' do
+    entry1, entry2, entry3 = 3.times.map {|n| build(:entry, pub_date: Time.now + n*60) }
+
+    friends_fetcher.stub(:fetch).with('artemave').and_return(['fedor_q', 'go', 'rokky'])
+    friend_entries_fetcher.stub(:fetch).with('rokky').and_return([])
+    friend_entries_fetcher.stub(:fetch).with('fedor_q').and_return([entry1, entry2])
+    friend_entries_fetcher.stub(:fetch).with('go').and_return([entry3])
+
+    entries = entry_fetcher.fetch_for_user('artemave')
+    entries.should == [entry3, entry2, entry1]
+  end
 end

@@ -16,6 +16,7 @@ class EntryFetcher
       end
     end
     threads.each(&:join)
-    entries
+
+    entries.sort! {|x,y| y.pub_date <=> x.pub_date }
   end
 end
