@@ -1,17 +1,14 @@
-require_relative 'entry_fetcher'
-require_relative 'feed_persistence_service'
-
 class UpdateFeedTask
-  def initialize entry_fetcher = EntryFetcher.new, feed_persistence_service = FeedPersistenceService.new
-    @entry_fetcher            = entry_fetcher
+  def initialize feed_persistence_service = FeedPersistenceService.new, feed_updater = FeedUpdater.new
     @feed_persistence_service = feed_persistence_service
+    @feed_updater = feed_updater
   end
 
-  def invoke feed
-    @entry_fetcher.fetch_for_user(feed.username).each do |entry|
-      feed.entries << entry
+  def invoke
+    puts "Start update: #{Time.now}"
+    @feed_persistence_service.all.each do |feed|
+      @feed_updater.update feed
     end
-
-    @feed_persistence_service.update feed
+    puts "Update finished: #{Time.now}"
   end
 end

@@ -3,24 +3,17 @@ require_relative '../lib/update_feed_task'
 require_relative '../lib/feed'
 
 describe UpdateFeedTask do
-  let(:entry1) { build :entry }
-  let(:entry2) { build :entry }
-  let(:entry_fetcher) { double :entry_fetcher }
-  let(:feed_persistence_service) { double(:feed_persistence_service).as_null_object }
-  let(:update_feed_task) { UpdateFeedTask.new entry_fetcher, feed_persistence_service }
-  let(:feed) { Feed.new username: 'artemave' }
+  let(:feed_updater) { mock(:feed_updater) }
+  let(:feed_persistence_service) { stub(:feed_persistence_service) }
+  let(:update_feed_task) { UpdateFeedTask.new feed_persistence_service, feed_updater }
 
-  it 'populates feed with posts from livejournal' do
-    entry_fetcher.stub(:fetch_for_user).with('artemave').and_return([entry1, entry2])
+  it 'updates all existing feeds' do
+    feed1, feed2 = Feed.new(username: 'alice'), Feed.new(username: 'bob')
+    feed_persistence_service.stub(:all).and_return([feed1, feed2])
 
-    update_feed_task.invoke feed
-    feed.entries.should == [entry1, entry2]
-  end
+    feed_updater.should_receive(:update).with(feed1)
+    feed_updater.should_receive(:update).with(feed2)
 
-  it 'persists updated feed' do
-    entry_fetcher.should_receive(:fetch_for_user).with('artemave').ordered.and_return([])
-    feed_persistence_service.should_receive(:update).with(feed).ordered
-
-    update_feed_task.invoke feed
+    update_feed_task.invoke
   end
 end
