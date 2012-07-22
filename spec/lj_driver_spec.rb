@@ -1,23 +1,38 @@
 require_relative 'spec_helper'
+require_relative '../lib/lj_driver'
+require 'faraday'
 
 describe LjDriver do
-  let(:http_client) { stub :http_client }
-  let(:lj_driver) { LjDriver.new http_client }
+  let(:conn) do
+    Faraday.new do |builder|
+      # those stubs suck, because faraday is loosing hostname part of url somewhere
+      builder.adapter :test do |stub|
+        stub.get '/misc/fdata.bml?user=artemave' do 
+          [200, {}, 'data']
+        end
+        stub.get '/data/rss' do 
+          [200, {}, 'xml']
+        end
+        stub.get '/data/rss' do 
+          [200, {}, 'xml']
+        end
+      end
+    end
+  end
+  let(:lj_driver) { LjDriver.new conn }
 
   it 'fetches user friends data' do
-    http_client.stub(:get).with('http://www.livejournal.com/misc/fdata.bml?user=artemave').and_return('data')
     data = lj_driver.friends_data 'artemave'
     data.should == 'data'
   end
 
   it 'fetches user rss' do
-    http_client.stub(:get).with('http://artemave.livejournal.com/data/rss').and_return('xml')
     xml = lj_driver.user_rss 'artemave'
     xml.should == 'xml'
   end
 
   it 'changes username subdomain according to lj idiotic rules' do
-    http_client.should_receive(:get).with('http://artem-ave.livejournal.com/data/rss')
-    lj_driver.user_rss 'artem_ave'
+    xml = lj_driver.user_rss 'artem_ave'
+    xml.should == 'xml'
   end
 end

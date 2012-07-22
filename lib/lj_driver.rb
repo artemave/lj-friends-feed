@@ -1,16 +1,23 @@
-require 'rest-client'
+require 'faraday'
 
 class LjDriver
-  def initialize http_client = RestClient
-    @http_client = http_client
+  def initialize conn
+    @conn = conn || Faraday.new do |faraday|
+      faraday.response :logger
+      faraday.response :raise_error
+      faraday.adapter Faraday.default_adapter
+    end
+    @conn.headers['User-Agent'] = "LjFriendsFeed - https://github.com/artemave/lj-friends-feed"
   end
 
   def friends_data user
-    @http_client.get "http://www.livejournal.com/misc/fdata.bml?user=#{user}"
+    resp = @conn.get "http://www.livejournal.com/misc/fdata.bml", user: user
+    resp.body
   end
 
   def user_rss user
-    @http_client.get "http://#{comply_with_lj_idiocy user}.livejournal.com/data/rss"
+    resp = @conn.get "http://#{comply_with_lj_idiocy user}.livejournal.com/data/rss"
+    resp.body
   end
 
   private

@@ -6,7 +6,7 @@ gem 'sinatra-reloader'
 gem 'sinatra-url-for', git: 'git://github.com/emk/sinatra-url-for.git'
 gem 'rack-flash3'
 gem 'haml'
-gem 'rest-client'
+gem 'faraday'
 gem 'key_struct'
 gem 'mongoid'
 
