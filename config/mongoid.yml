@@ -10,3 +10,6 @@ test:
       database: ljfeed_test
       hosts:
         - localhost:27017
+
+production:
+  uri: <%= ENV['MONGOLAB_URI'] %>

@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+require 'bundler'
+Bundler.require(:default)
+
+require_relative './lib/update_feed_task'
+
+task = UpdateFeedTask.new
+
+puts "Update feeds start: #{Time.now}"
+task.invoke
+puts "Update feeds finish: #{Time.now}"
