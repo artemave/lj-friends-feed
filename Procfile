@@ -1,1 +1,1 @@
-web: ./runapp -p $PORT
+web: rackup config.ru -p $PORT
