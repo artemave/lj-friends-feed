@@ -9,6 +9,7 @@ gem 'haml'
 gem 'faraday'
 gem 'key_struct'
 gem 'mongoid'
+gem 'bson_ext'
 
 group :test do
   gem 'cucumber', require: false
