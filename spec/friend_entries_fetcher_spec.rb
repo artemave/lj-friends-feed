@@ -15,4 +15,11 @@ describe FriendEntriesFetcher do
     entries = friend_entries_fetcher.fetch 'artemave'
     entries.should == [entry1, entry2]
   end
+
+  it 'returns empty list as entries for wrong usernames' do
+    lj_driver.stub(:user_rss).with('_artem').and_raise(LjDriver::BadUserName)
+    
+    entries = friend_entries_fetcher.fetch '_artem'
+    entries.should == []
+  end
 end

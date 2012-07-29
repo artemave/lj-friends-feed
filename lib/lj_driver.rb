@@ -1,6 +1,9 @@
 require 'faraday'
 
 class LjDriver
+
+  class BadUserName < Exception; end
+
   def initialize conn = nil
     @conn = conn || Faraday.new do |faraday|
       faraday.response :logger
@@ -23,6 +26,7 @@ class LjDriver
   private
 
     def comply_with_lj_idiocy user
+      raise BadUserName.new("reserved user name: #{user}") if user =~ /^_|_$/
       user.gsub('_', '-')
     end
 end

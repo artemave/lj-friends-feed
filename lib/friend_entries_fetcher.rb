@@ -10,5 +10,7 @@ class FriendEntriesFetcher
   def fetch user
     xml = @lj_driver.user_rss user
     @rss_items_extractor.extract_items xml
+  rescue LjDriver::BadUserName => e
+    []
   end
 end

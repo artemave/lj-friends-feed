@@ -35,4 +35,9 @@ describe LjDriver do
     xml = lj_driver.user_rss 'artem_ave'
     xml.should == 'xml'
   end
+
+  it 'raises LjDriver::BadUserName if name starts or finishes with _' do
+    expect { lj_driver.user_rss '_artem' }.to raise_error(LjDriver::BadUserName)
+    expect { lj_driver.user_rss 'artem_' }.to raise_error(LjDriver::BadUserName)
+  end
 end
