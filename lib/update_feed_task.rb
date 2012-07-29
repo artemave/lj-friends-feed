@@ -12,7 +12,8 @@ class UpdateFeedTask
       begin
         @feed_updater.update feed
       rescue Exception => e
-        puts "Feed update failed for username: #{feed.username}: #{e.message}"
+        puts "Feed update failed for username: #{feed.username}: #{e.inspect}"
+        puts e.backtrace.join("\n")
       end
     end
   end
