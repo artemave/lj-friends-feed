@@ -8,7 +8,7 @@
 # set :output, "/path/to/my/cron_log.log"
 #
 every :hour do
-  command "RACK_ENV=development bundle exec ruby update_feeds"
+  command "cd #{File.expand_path '../..', __FILE__}; RACK_ENV=development bundle exec ruby update_feeds"
 end
 #
 # every 4.days do

@@ -51,7 +51,7 @@ class Frontend < Sinatra::Base
 
   post '/feeds' do
     feed = feed_persistence_service.find_or_create(params['username'])
-    flash[:notice] = 'Feed created!'
+    flash[:notice] = 'Feed created! Posts will appear within next 30 minutes.'
     redirect "/feeds/#{feed.username}"
   end
 end
