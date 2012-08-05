@@ -12,6 +12,7 @@ gem 'faraday'
 gem 'key_struct'
 gem 'mongoid'
 gem 'bson_ext'
+gem 'whenever', require: false
 
 group :test do
   gem 'cucumber', require: false
