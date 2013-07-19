@@ -2,8 +2,8 @@ require_relative 'spec_helper'
 require_relative '../lib/friend_entries_fetcher'
 
 describe FriendEntriesFetcher do
-  let(:lj_driver) { stub(:lj_driver) }
-  let(:rss_items_extractor) { stub(:rss_items_extractor) }
+  let(:lj_driver) { double(:lj_driver) }
+  let(:rss_items_extractor) { double(:rss_items_extractor) }
   let(:friend_entries_fetcher) { FriendEntriesFetcher.new lj_driver, rss_items_extractor }
 
   it 'fetches user entries' do

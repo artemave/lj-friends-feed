@@ -3,8 +3,8 @@ require_relative '../lib/entry_fetcher'
 
 describe EntryFetcher do
   let(:entry_fetcher) { EntryFetcher.new(friends_fetcher, friend_entries_fetcher) }
-  let(:friends_fetcher) { stub(:friends_fetcher) }
-  let(:friend_entries_fetcher) { stub(:friend_entries_fetcher) }
+  let(:friends_fetcher) { double(:friends_fetcher) }
+  let(:friend_entries_fetcher) { double(:friend_entries_fetcher) }
 
   it 'fetches friends entries for lj user' do
     entry1, entry2, entry3 = 3.times.map { build :entry }

@@ -3,7 +3,7 @@ require_relative '../lib/friends_fetcher'
 
 describe FriendsFetcher do
   let(:friends_fetcher) { FriendsFetcher.new(lj_driver) }
-  let(:lj_driver) { stub(:lj_driver) }
+  let(:lj_driver) { double(:lj_driver) }
 
   it 'fetches friends of a user' do
     lj_driver.stub(:friends_data).with('artemave').and_return "

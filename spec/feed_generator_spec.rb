@@ -8,7 +8,7 @@ describe FeedGenerator do
   let(:link_generator) { double :link_generator, generate_feed_link: 'link' }
   let(:feed_gen) { FeedGenerator.new link_generator, item_populator }
   let(:model) {
-    stub :model,
+    double :model,
       title: 'artemave friends posts',
       description: 'description',
       entries: []

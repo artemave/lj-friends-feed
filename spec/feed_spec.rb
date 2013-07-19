@@ -1,7 +1,7 @@
 require_relative '../lib/feed'
 
 describe Feed, 'model of RSS feed' do
-  let(:entries) { mock(:entries) }
+  let(:entries) { double(:entries) }
   let(:feed) { Feed.new({ username: 'artemave', entries: entries })}
 
   it 'makes feed title out of lj username' do

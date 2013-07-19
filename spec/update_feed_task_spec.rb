@@ -3,8 +3,8 @@ require_relative '../lib/update_feed_task'
 require_relative '../lib/feed'
 
 describe UpdateFeedTask do
-  let(:feed_updater) { mock(:feed_updater) }
-  let(:feed_persistence_service) { stub(:feed_persistence_service) }
+  let(:feed_updater) { double(:feed_updater) }
+  let(:feed_persistence_service) { double(:feed_persistence_service) }
   let(:update_feed_task) { UpdateFeedTask.new feed_persistence_service, feed_updater }
 
   it 'updates all existing feeds' do

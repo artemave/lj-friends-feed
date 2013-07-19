@@ -1,6 +1,4 @@
-source :rubygems
-
-ruby '1.9.3'
+source 'https://rubygems.org'
 
 gem 'thin'
 gem 'sinatra'
@@ -10,8 +8,7 @@ gem 'rack-flash3'
 gem 'haml'
 gem 'faraday'
 gem 'key_struct'
-gem 'mongoid'
-gem 'bson_ext'
+gem 'mongoid', "~> 3.0.0"
 gem 'whenever', require: false
 
 group :test do
@@ -20,7 +17,7 @@ group :test do
   gem 'factory_girl'
   gem 'faker'
   gem 'capybara'
-  gem 'database_cleaner', '~> 0.8.0'
+  gem 'database_cleaner'
   gem 'awesome_print'
   gem 'pry'
   gem 'pry-doc'

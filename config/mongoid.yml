@@ -14,4 +14,6 @@ test:
 production:
   sessions:
     default:
-      uri: <%= ENV['MONGOLAB_URI'] %>
+      database: ljfeed_production
+      hosts:
+        - localhost:27017

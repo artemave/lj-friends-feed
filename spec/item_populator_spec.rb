@@ -10,7 +10,7 @@ describe ItemPopulator do
   end
 
   it 'sets guid to entry link' do
-    content_setter = mock(:content_setter)
+    content_setter = double(:content_setter)
 
     item.stub(:guid).and_return(content_setter)
     content_setter.should_receive(:content=).with(entry.link)
