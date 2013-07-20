@@ -5,6 +5,7 @@ require_relative '../lib/rss_items_extractor'
 describe RssItemsExtractor do
   let (:entry1) { build :entry }
   let (:entry2) { build :entry, author: entry1.author }
+  let (:entry3) { build :entry }
   let (:rss_items_extractor) { RssItemsExtractor.new }
 
   let (:xml) do
@@ -28,10 +29,18 @@ describe RssItemsExtractor do
         item.pubDate      = entry2.pub_date
         item.description  = entry2.content
       end
+
+      maker.items.new_item do |item|
+        item.guid.content = entry2.link # duplicate guid!
+        item.link         = entry2.link
+        item.title        = entry3.title
+        item.pubDate      = entry3.pub_date
+        item.description  = entry3.content
+      end
     end.to_s
   end
 
-  it 'extracts array of entries from rss xml' do
+  it 'extracts array of entries (except for duplicates) from rss xml' do
     entries = rss_items_extractor.extract_items xml
     entries.should =~ [entry1, entry2]
   end

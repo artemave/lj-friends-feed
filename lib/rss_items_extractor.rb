@@ -7,6 +7,9 @@ class RssItemsExtractor
 
     [].tap do |entries|
       rss.items.each do |item|
+        # somehow we get duplicates
+        next if entries.map(&:link).include?(item.link)
+
         entries << Entry.new(
             author: rss.channel.title,
              title: item.title,
