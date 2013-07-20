@@ -22,8 +22,10 @@ class FeedPersistenceService
     field :pub_date
     field :content
     field :title
+
+    embedded_in :mongo_feed
   end
-  
+
   def create feed
     mongo_entries = feed.entries.map do |e|
       MongoEntry.new e.to_hash
@@ -38,7 +40,6 @@ class FeedPersistenceService
     end
     mf = MongoFeed.find_by username: feed.username
     mf.mongo_entries = mongo_entries
-    mf.save
     feed
   end
 

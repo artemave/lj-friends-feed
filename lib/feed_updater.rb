@@ -8,10 +8,7 @@ class FeedUpdater
   end
 
   def update feed
-    @entry_fetcher.fetch_for_user(feed.username).each do |entry|
-      feed.entries << entry
-    end
-
+    feed.entries = @entry_fetcher.fetch_for_user(feed.username)
     @feed_persistence_service.update feed
   end
 end
