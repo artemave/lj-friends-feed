@@ -12,7 +12,7 @@ gem 'mongoid', "~> 3.0.0"
 
 gem 'whenever', require: false
 gem 'capistrano', require: false
-gem 'capistrano-thin', git: 'git@github.com:artemave/capistrano-thin.git', require: false
+gem 'capistrano-thin', git: 'git://github.com/artemave/capistrano-thin.git', require: false
 gem 'god', require: false
 
 group :test do

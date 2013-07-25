@@ -1,16 +1,16 @@
 GIT
+  remote: git://github.com/artemave/capistrano-thin.git
+  revision: de71e61e9e27dfd7787533a1d11076d4f71e9cd2
+  specs:
+    capistrano-thin (0.0.1)
+      capistrano
+
+GIT
   remote: git://github.com/emk/sinatra-url-for.git
   revision: a19bac86311029a2bb6c7df940cc905686adc9cd
   specs:
     sinatra-url-for (0.2.1)
       sinatra (>= 0.9.1.1)
-
-GIT
-  remote: git@github.com:artemave/capistrano-thin.git
-  revision: de71e61e9e27dfd7787533a1d11076d4f71e9cd2
-  specs:
-    capistrano-thin (0.0.1)
-      capistrano
 
 GEM
   remote: https://rubygems.org/
