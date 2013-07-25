@@ -22,6 +22,7 @@ set :whenever_command, "bundle exec whenever"
 require "whenever/capistrano"
 
 set :thin_servers, 1
+set :thin_host, '0.0.0.0'
 set :thin_port, 4000
 require 'capistrano-thin'
 

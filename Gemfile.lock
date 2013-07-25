@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/artemave/capistrano-thin.git
-  revision: de71e61e9e27dfd7787533a1d11076d4f71e9cd2
+  revision: d2b75dd533eb2ece22b5c97440e3838dfb2e26af
   specs:
     capistrano-thin (0.0.1)
       capistrano
