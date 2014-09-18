@@ -10,11 +10,6 @@ gem 'faraday'
 gem 'key_struct'
 gem 'mongoid', "~> 3.0.0"
 
-gem 'whenever', require: false
-gem 'capistrano', require: false
-gem 'capistrano-thin', git: 'git://github.com/artemave/capistrano-thin.git', require: false
-gem 'god', require: false
-
 group :test do
   gem 'cucumber', require: false
   gem 'rspec'
@@ -24,5 +19,4 @@ group :test do
   gem 'database_cleaner'
   gem 'awesome_print'
   gem 'pry'
-  gem 'pry-doc'
 end
