@@ -1,14 +1,16 @@
 FROM ruby:2.1.2
 
-RUN mkdir -p /usr/src/app
-RUN mkdir -p /cache/bundler
+RUN mkdir -p /app
 
-WORKDIR /usr/src/app
-
-COPY . /usr/src/app
-
-RUN bundle install --jobs `nproc` --without test:development --path /cache/bundler
+WORKDIR /app
 
 EXPOSE 9292
 ENV RACK_ENV production
+
+ADD Gemfile /app/
+ADD Gemfile.lock /app/
+RUN bundle install --system --jobs `nproc` --without test:development
+
+ADD . /app
+
 CMD ["bundle",  "exec",  "rackup",  "./config.ru"]

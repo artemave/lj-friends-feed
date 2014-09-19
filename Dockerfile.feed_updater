@@ -1,13 +1,15 @@
 FROM ruby:2.1.2
 
-RUN mkdir -p /usr/src/app
-RUN mkdir -p /cache/bundler
-
-WORKDIR /usr/src/app
-
-COPY . /usr/src/app
-
-RUN bundle install --jobs `nproc` --without test:development --path /cache/bundler
+RUN mkdir -p /app
 
 ENV RACK_ENV production
+
+WORKDIR /app
+
+ADD Gemfile /app/
+ADD Gemfile.lock /app/
+RUN bundle install --system --jobs `nproc` --without test:development
+
+ADD . /app
+
 CMD ["bundle",  "exec",  "ruby",  "./update_feeds.rb"]
