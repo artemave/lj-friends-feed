@@ -23,10 +23,13 @@ rm ./Dockerfile
 ln -s ./Dockerfile.web ./Dockerfile
 docker build -t lj-web-image .
 
+CACHE=/cache
+mkdir -p $CACHE
+
 docker stop lj-feed_updater || :
 docker rm lj-feed_updater || :
-docker run -d --link mongodb:mongodb --name lj-feed_updater lj-feed_updater-image
+docker run -d -v $CACHE:/cache --link mongodb:mongodb --name lj-feed_updater lj-feed_updater-image
 
 docker stop lj-web || :
 docker rm lj-web || :
-docker run -d -p 9292 --link mongodb:mongodb --name lj-web lj-web-image
+docker run -d -v $CACHE:/cache -p 9292 --link mongodb:mongodb --name lj-web lj-web-image

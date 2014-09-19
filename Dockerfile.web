@@ -1,11 +1,14 @@
 FROM ruby:2.1.2
 
 RUN mkdir -p /usr/src/app
+RUN mkdir -p /cache/bundler
+
 WORKDIR /usr/src/app
 
 COPY . /usr/src/app
 
-RUN bundle install --system --without test:development
+ENV BUNDLE_PATH /cache/bundler
+RUN bundle install --jobs `nproc` --system --without test:development
 
 EXPOSE 9292
 ENV RACK_ENV production
