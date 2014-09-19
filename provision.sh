@@ -16,8 +16,12 @@ if [[ ! $mongo_is_running ]]; then
   docker run -d -p 27017:27017 -v $DATA_DIR:/data/db --name mongodb dockerfile/mongodb
 fi
 
-docker build -t lj-feed_updater-image - < Dockerfile.feed_updater
-docker build -t lj-web-image - < Dockerfile.web
+ln -s ./Dockerfile.feed_updater ./Dockerfile
+docker build -t lj-feed_updater-image .
+
+rm ./Dockerfile
+ln -s ./Dockerfile.web ./Dockerfile
+docker build -t lj-web-image .
 
 docker stop lj-feed_updater || :
 docker rm lj-feed_updater || :
