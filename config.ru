@@ -1,3 +1,7 @@
+# to see things in docker logs
+STDOUT.sync = true
+STDERR.sync = true
+
 require 'bundler'
 Bundler.require(:default)
 
