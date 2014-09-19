@@ -1,0 +1,12 @@
+FROM ruby:2.1.2
+
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+COPY . /usr/src/app
+
+RUN bundle install --system --without test:development
+
+EXPOSE 9292
+ENV RACK_ENV production
+CMD ["bundle",  "exec",  "rackup",  "./config.ru"]

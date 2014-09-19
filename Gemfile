@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'thin'
 gem 'sinatra'
 gem 'sinatra-reloader'
 gem 'sinatra-url-for', git: 'git://github.com/emk/sinatra-url-for.git'
