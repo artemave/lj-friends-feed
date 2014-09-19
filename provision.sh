@@ -29,4 +29,4 @@ docker run -d --link mongodb:mongodb --name lj-feed_updater lj-feed_updater-imag
 
 docker stop lj-web || :
 docker rm lj-web || :
-docker run -d -p 9292 --link mongodb:mongodb --name lj-web lj-web-image
+docker run -d -p 9292:9292 --link mongodb:mongodb --name lj-web lj-web-image
