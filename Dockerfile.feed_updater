@@ -12,4 +12,4 @@ RUN bundle install --system --jobs `nproc` --without test:development
 
 ADD . /app
 
-CMD ["bundle",  "exec",  "ruby",  "./update_feeds.rb"]
+CMD ["./update_feeds_forever.sh"]
